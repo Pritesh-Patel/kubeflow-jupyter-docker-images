@@ -121,8 +121,6 @@ RUN pip3 --no-cache-dir install \
     scikit-learn \
     threadpoolctl
 
-COPY --chown=jovyan:users requirements.txt /tmp
-
 RUN docker-credential-gcr configure-docker && chown ${NB_USER}:users $HOME/.docker/config.json
 
 # Configure container startup
