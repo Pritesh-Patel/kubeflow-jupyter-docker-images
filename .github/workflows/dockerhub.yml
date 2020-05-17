@@ -13,9 +13,8 @@ jobs:
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
-        name: paperplanes/kubeflow-jupyter
+        name: paperplanes/jupyter-cv
         workdir: computer-vision
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-        tag: cv-latest
         snapshot: true
