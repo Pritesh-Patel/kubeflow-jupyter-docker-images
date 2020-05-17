@@ -42,17 +42,9 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
   python3-pip \
   python3-dev \
   python3-setuptools \
-  tesseract-ocr \  
+  tesseract-ocr \
   && apt-get clean && \
   rm -rf /var/lib/apt/lists/*
-  
-RUN apt-get update -y && \
-    apt-get install -y build-essential libfuse-dev libcurl4-openssl-dev libxml2-dev pkg-config libssl-dev mime-support automake libtool wget tar git unzip
-## Install S3 Fuse
-RUN rm -rf /usr/src/s3fs-fuse
-RUN git clone https://github.com/s3fs-fuse/s3fs-fuse/ /usr/src/s3fs-fuse
-WORKDIR /usr/src/s3fs-fuse 
-RUN ./autogen.sh && ./configure && make && make install
 
 # Install Nodejs for jupyterlab-manager
 RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
@@ -114,6 +106,7 @@ RUN cd /tmp && \
 
 # Install base python3 packages
 RUN pip3 --no-cache-dir install \
+    b2 \
     jupyter-console==6.1.0 \
     jupyterlab \
     xgboost \
